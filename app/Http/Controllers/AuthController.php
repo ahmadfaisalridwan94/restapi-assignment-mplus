@@ -94,22 +94,11 @@ class AuthController extends Controller
     {
         try {
             $newToken = auth()->refresh(true, true);
-
-            return response()->json([
-                'status' => true,
-                'message' => 'Token refreshed successfully',
-                'token' => $newToken
-            ]);
+            return ResponseHelper::jsonResponse(true, '0000', 'Token refreshed successfully', ['token' => $newToken], 200);
         } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
-            return response()->json([
-                'status' => false,
-                'message' => 'Token is invalid'
-            ], 401);
+            return ResponseHelper::jsonResponse(false, '0003', 'Token is invalid', [], 401);
         } catch (\Exception $e) {
-            return response()->json([
-                'status' => false,
-                'message' => 'Unable to refresh token'
-            ], 500);
+            return ResponseHelper::jsonResponse(false, '0003', 'Unable to refresh token', [], 500);
         }
     }
 }

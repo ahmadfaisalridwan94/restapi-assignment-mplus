@@ -14,7 +14,7 @@ Route::group(['prefix' => 'v1'], function () {
     Route::post('/auth/facebook', [AuthController::class, 'facebook']);
     Route::post('/auth/login', [AuthController::class, 'login']);
     Route::post('/auth/register', [AuthController::class, 'register']);
-    Route::post('/auth/token/refresh', [AuthController::class, 'refresh'])->middleware('jwt.refresh');
+    Route::post('/auth/token/refresh', [AuthController::class, 'refresh']);
 });
 
 Route::group(['prefix' => 'v1', 'middleware' => 'jwt.auth'], function () {
