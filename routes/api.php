@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -22,14 +23,8 @@ Route::group(['prefix' => 'v1'], function () {
 });
 
 Route::group(['prefix' => 'v1', 'middleware' => 'jwt.auth'], function () {
-    Route::get('/users/profile', function (Request $request) {
-        return "get profile";
-    });
-
-    Route::put('/users/profile', function (Request $request) {
-        return "update profile";
-    });
-
+    Route::get('/users/profile', [UserController::class, 'profile']);
+    Route::put('/users/profile', [UserController::class, 'update']);
     Route::post('/auth/logout', [AuthController::class, 'logout']);
 
     // group admin
