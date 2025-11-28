@@ -9,8 +9,12 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
+
+
 Route::group(['prefix' => 'v1'], function () {
     Route::post('/auth/google', [AuthController::class, 'google']);
+    Route::get('/oauth/google/callback', [AuthController::class, 'google_callback']);
+
     Route::post('/auth/facebook', [AuthController::class, 'facebook']);
     Route::post('/auth/login', [AuthController::class, 'login']);
     Route::post('/auth/register', [AuthController::class, 'register']);

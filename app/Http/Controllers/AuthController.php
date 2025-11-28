@@ -11,6 +11,7 @@ use App\Models\User;
 
 // packages
 use Tymon\JWTAuth\Facades\JWTAuth;
+use Laravel\Socialite\Socialite;
 
 class AuthController extends Controller
 {
@@ -72,9 +73,47 @@ class AuthController extends Controller
         return ResponseHelper::jsonResponse(false, '0002', 'registration failed', $user, 409);
     }
 
-    public function google(Request $request)
+    public function google()
     {
-        return "google auth";
+        $url = Socialite::driver('google')
+            ->stateless()
+            ->redirect()
+            ->getTargetUrl();
+
+        return ResponseHelper::jsonResponse(true, '0000', 'Success', [
+            'url' => $url
+        ], 200);
+    }
+
+    public function google_callback()
+    {
+        try {
+            $googleUser = Socialite::driver('google')->stateless()->user();
+        } catch (\Exception $e) {
+            return ResponseHelper::jsonResponse(false, '0003', 'Google auth failed', [], 401);
+        }
+
+        $user = User::updateOrCreate(
+            ['email' => $googleUser->email],
+            [
+                'name' => $googleUser->name,
+            ]
+        );
+
+        $user->loginProvider()->updateOrCreate(
+            ['provider_id' => $googleUser->id],
+            [
+                'provider_name' => 'google',
+                'email' => $googleUser->email,
+                'avatar' => $googleUser->avatar,
+                'nick_name' => $googleUser->name
+            ]
+        );
+
+        return ResponseHelper::jsonResponse(true, '0000', 'Success', [
+            'user' => $user,
+            'token' => JWTAuth::fromUser($user)
+        ], 200);
     }
 
     public function facebook(Request $request)
