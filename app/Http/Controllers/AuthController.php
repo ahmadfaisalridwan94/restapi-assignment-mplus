@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Helpers\ResponseHelper;
 use App\Helpers\StringHelper;
+use App\Http\Requests\FacebookLoginRequest;
 use App\Http\Requests\GoogleLoginRequest;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
@@ -106,16 +107,16 @@ class AuthController extends Controller
         ]);
 
         if ($response->failed()) {
-            return response()->json([
+            return ResponseHelper::jsonResponse(false, '0001', 'Error', [
                 'error' => 'Invalid Google code',
                 'details' => $response->json()
-            ], 400);
+            ], 401);
         }
 
         $tokenData = $response->json();
 
         if (!isset($tokenData['access_token'])) {
-            return response()->json([
+            return ResponseHelper::jsonResponse(false, '0001', 'Error', [
                 'error' => 'Google did not return an access token',
                 'details' => $tokenData,
             ], 400);
@@ -128,7 +129,7 @@ class AuthController extends Controller
                 ->stateless()
                 ->userFromToken($accessToken);
         } catch (\Exception $e) {
-            return response()->json([
+            return ResponseHelper::jsonResponse(false, '0001', 'Error', [
                 'error' => 'Failed to fetch Google user info',
                 'details' => $e->getMessage(),
             ], 400);
@@ -158,12 +159,8 @@ class AuthController extends Controller
         ], 200);
     }
 
-    public function facebook(Request $request)
+    public function facebook(FacebookLoginRequest $request)
     {
-        $request->validate([
-            'code' => 'required|string',
-        ]);
-
         try {
             $tokenData = Http::asForm()->get('https://graph.facebook.com/v19.0/oauth/access_token', [
                 'client_id' => config('services.facebook.client_id'),
