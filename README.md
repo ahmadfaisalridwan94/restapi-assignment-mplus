@@ -1,4 +1,4 @@
-# Laravel Project README
+# Laravel REST API Assignment Project - M+ Software
 
 ## Requirements
 
