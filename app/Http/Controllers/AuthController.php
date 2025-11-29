@@ -199,30 +199,6 @@ class AuthController extends Controller
         ], 200);
     }
 
-    public function facebook_callback()
-    {
-        try {
-            $facebookUser = Socialite::driver('facebook')->stateless()->user();
-        } catch (\Exception $e) {
-            return ResponseHelper::jsonResponse(false, '0003', 'Facebook auth failed', [], 401);
-        }
-
-        $user = User::updateOrCreate(
-            ['email' => $facebookUser->email],
-            [
-                'name' => $facebookUser->name,
-                'provider_name' => 'facebook',
-                'provider_id' => $facebookUser->id,
-                'avatar' => $facebookUser->avatar
-            ]
-        );
-
-        return ResponseHelper::jsonResponse(true, '0000', 'Success', [
-            'user' => $user,
-            'token' => JWTAuth::fromUser($user)
-        ], 200);
-    }
-
     public function logout()
     {
         $removeToken = JWTAuth::invalidate(JWTAuth::getToken());
