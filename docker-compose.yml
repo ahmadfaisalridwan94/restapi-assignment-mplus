@@ -1,52 +1,38 @@
-version: "3.8"
-
 services:
   app:
     build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: laravel_api_app
-    restart: unless-stopped
-    working_dir: /var/www/html
+      context: ./docker/php
+    container_name: laravel-app
     volumes:
-      - .:/var/www/html
-    networks:
-      - laravel
+      - ./src:/var/www/html
+    env_file:
+      - ./src/.env
     depends_on:
       - mysql
-
-  mysql:
-    image: mysql:8.0
-    container_name: laravel_api_mysql
-    restart: unless-stopped
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: laravel
-      MYSQL_USER: laravel
-      MYSQL_PASSWORD: laravel
-    ports:
-      - "3307:3306"
-    volumes:
-      - db_data:/var/lib/mysql
-    networks:
-      - laravel
+    expose:
+      - "9000"
 
   nginx:
-    image: nginx:alpine
-    container_name: laravel_api_nginx
-    restart: unless-stopped
+    build:
+      context: ./docker/nginx
+    container_name: laravel-nginx
     ports:
-      - "8000:80"
+      - "8080:80"
     volumes:
-      - .:/var/www/html
-      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
-    networks:
-      - laravel
+      - ./src:/var/www/html
     depends_on:
       - app
 
-networks:
-  laravel:
+  mysql:
+    image: mysql:8.0
+    container_name: laravel-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: restapi_assignment
+    ports:
+      - "3307:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
 
 volumes:
-  db_data:
+  dbdata:
