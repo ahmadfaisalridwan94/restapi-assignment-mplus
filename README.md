@@ -76,7 +76,7 @@ cd restapi-assignment-mplus/src
 composer install
 ```
 
-## 3. Copy `.env`
+## 3. Copy `.env` dan jalankan command untuk generate key dan generate jwt secret
 
 ```bash
 cp .env.example .env
