@@ -90,6 +90,18 @@ class AuthController extends Controller
         ], 200);
     }
 
+    public function generateFacebookAuthUrl()
+    {
+        $url = Socialite::driver('facebook')
+            ->stateless()
+            ->redirect()
+            ->getTargetUrl();
+
+        return ResponseHelper::jsonResponse(true, '0000', 'Success', [
+            'url' => $url
+        ], 200);
+    }
+
     public function google(Request $request)
     {
         $request->validate([
@@ -150,22 +162,40 @@ class AuthController extends Controller
         ], 200);
     }
 
-    public function facebook()
+    public function facebook(Request $request)
     {
+        $request->validate([
+            'code' => 'required|string',
+        ]);
 
-        dd(get_class_methods(Socialite::driver('google')));
-        $accessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vcmVzdGFwaS50ZXN0L2FwaS92MS9hdXRoL2dvb2dsZSIsImlhdCI6MTc2NDM5MDIxNSwiZXhwIjoxNzY0MzkzODE1LCJuYmYiOjE3NjQzOTAyMTUsImp0aSI6Img5Zml1WUpDcHliR2dxUW0iLCJzdWIiOiJhZWVjNmI5OS1mNDczLTQxYjQtYjlhMC1kNTZhYjVhZDIwYzMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.qmoAlWYpsWqc_1qIkWvMicJq4ZkQXFmXd7NPhOwgmUA";
-        $user = Socialite::driver('google')->userFromToken($accessToken);
-        dd($user);
+        try {
+            $tokenData = Http::asForm()->get('https://graph.facebook.com/v19.0/oauth/access_token', [
+                'client_id' => config('services.facebook.client_id'),
+                'client_secret' => config('services.facebook.client_secret'),
+                'redirect_uri' => config('services.facebook.redirect'),
+                'code' => $request->code,
+            ])->json();
 
+            $facebookUser = Socialite::driver('facebook')
+                ->stateless()
+                ->userFromToken($tokenData['access_token']);
+        } catch (\Exception $e) {
+            return ResponseHelper::jsonResponse(false, '0003', 'Facebook auth failed', [], 401);
+        }
 
-        $url = Socialite::driver('facebook')
-            ->stateless()
-            ->redirect()
-            ->getTargetUrl();
+        $user = User::updateOrCreate(
+            ['email' => $facebookUser->email],
+            [
+                'name' => $facebookUser->name,
+                'provider_name' => 'facebook',
+                'provider_id' => $facebookUser->id,
+                'avatar' => $facebookUser->avatar
+            ]
+        );
 
         return ResponseHelper::jsonResponse(true, '0000', 'Success', [
-            'url' => $url
+            'user' => $user,
+            'token' => JWTAuth::fromUser($user)
         ], 200);
     }
 
