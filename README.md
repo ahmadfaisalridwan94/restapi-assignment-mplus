@@ -59,6 +59,10 @@ docker exec -it laravel-app php artisan migrate
 
 - App: http://localhost:8080
 
+## 7. Dokumentasi
+
+- App: http://localhost:8080/api/documentation
+
 ---
 
 # 🔧 Manual Setup (tanpa Docker)
@@ -112,6 +116,10 @@ php artisan serve
 ```
 
 Akses: http://127.0.0.1:8000
+
+## 7. Dokumentasi
+
+- App: http://127.0.0.1:8000/api/documentation
 
 ---
 
