@@ -29,8 +29,16 @@ Sesuaikan dengan kebutuhan misalnya `DB_HOST`, `DB_DATABASE`, `DB_USERNAME`, `DB
 
 ## 3. Build & Run Containers
 
+development environment
+
 ```bash
-docker-compose up -d --build
+docker compose -f docker-compose.dev.yml up -d
+```
+
+production environment
+
+```bash
+docker compose -f docker-compose.prod.yml up --build -d
 ```
 
 ## 4. Install Dependencies
