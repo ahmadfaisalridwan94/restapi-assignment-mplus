@@ -13,8 +13,6 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-
-
 Route::group(['prefix' => 'v1'], function () {
     Route::post('/auth/google', [AuthController::class, 'google']);
     Route::get('/auth/google/url', [AuthController::class, 'generateGoogleAuthUrl']);

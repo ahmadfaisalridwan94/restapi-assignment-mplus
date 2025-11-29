@@ -1,0 +1,840 @@
+openapi: 3.0.0
+info:
+  title: RESTAPI ASSIGNMENT
+  version: 1.0.0
+servers:
+  - url: http://{{base_url}}
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+tags:
+  - name: AUTH
+  - name: AUTH > google
+  - name: AUTH > facebook
+  - name: USER
+  - name: ADMIN
+paths:
+  /api/v1/auth/google/url:
+    get:
+      tags:
+        - AUTH > google
+      summary: google url
+      responses:
+        '200':
+          description: OK
+          headers:
+            Server:
+              schema:
+                type: string
+                example: nginx/1.25.2
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Vary:
+              schema:
+                type: string
+                example: Accept-Encoding
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.4.7
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Date:
+              schema:
+                type: string
+                example: Sat, 29 Nov 2025 04:58:09 GMT
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Encoding:
+              schema:
+                type: string
+                example: gzip
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: |-
+                {
+                    "status": true,
+                    "code": "0000",
+                    "message": "Success",
+                    "data": {
+                        "auth_url": "https://accounts.google.com/o/oauth2/v2/auth?client_id=263435033112-c2ch6j8rb3hufn81njbltopememj5h8s.apps.googleusercontent.com&redirect_uri=http%3A%2F%2F127.0.0.1%3A8000%2Fapi%2Fv1%2Foauth%2Fgoogle%2Fcallback&response_type=code&scope=openid+email+profile&access_type=offline&prompt=consent&code_challenge=3DcVm6FWtg8Pj3qeBeQv6jnaMaU8SyBE6Z7uhRViDsc&code_challenge_method=S256",
+                        "code_verifier": "mELgShaNyJNkdcw0TPTR8fpuOlRHxBJkS83UN9g86LnhmOpxiUiEYDo7L8RKUYvQ"
+                    }
+                }
+  /api/v1/auth/google:
+    post:
+      tags:
+        - AUTH > google
+      summary: google
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                code: >-
+                  4/0Ab32j91U04UATlGZmI_A75EQ9pZNnICGwI4Bc5dSbM5xv4siJO2UWgr6VyjuzJFw5GKxfw
+                code_verifier: >-
+                  urM5oIq0D0Q9CyNWSN3sp5GBhT7gOuTRyhRBLcKSTdPzZJtK9N61Y50zxH8dKj2G
+      responses:
+        '200':
+          description: OK
+          headers:
+            Server:
+              schema:
+                type: string
+                example: nginx/1.25.2
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Vary:
+              schema:
+                type: string
+                example: Accept-Encoding
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.4.7
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Date:
+              schema:
+                type: string
+                example: Sat, 29 Nov 2025 07:29:06 GMT
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Encoding:
+              schema:
+                type: string
+                example: gzip
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: |-
+                {
+                    "status": true,
+                    "code": "0000",
+                    "message": "Success",
+                    "data": {
+                        "user": {
+                            "email": "ahmadfaisal.ridwan@gmail.com",
+                            "username": "ahmad.faisal.ridwan-wkbi0x",
+                            "name": "Ahmad Faisal Ridwan",
+                            "avatar": "https://lh3.googleusercontent.com/a/ACg8ocKoGn53IWu1E5q3AtFG8FqJVIeFCzk-OluwAyy96i92zQf58ZResg=s96-c",
+                            "id": "20faf390-78d4-43ac-8bcc-debbdcb4ff77"
+                        },
+                        "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vcmVzdGFwaS50ZXN0L2FwaS92MS9hdXRoL2dvb2dsZSIsImlhdCI6MTc2NDQwMTM0NiwiZXhwIjoxNzY0NDA0OTQ2LCJuYmYiOjE3NjQ0MDEzNDYsImp0aSI6IjBQQUJ5Z3BCSnFPSm1lSUQiLCJzdWIiOiIyMGZhZjM5MC03OGQ0LTQzYWMtOGJjYy1kZWJiZGNiNGZmNzciLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.zI3V227vRas_DQIGAYP3U1VFGaCxbkXGOGFqUEfz8XI"
+                    }
+                }
+  /api/v1/auth/facebook:
+    post:
+      tags:
+        - AUTH > facebook
+      summary: facebook
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                code: >-
+                  AQBklkrnXklvxO4uaMUycyR-M5OhtRs42xYYbgywZIJzxpeXpWGnBt-4floSanwAG2Bu123T5fHEhH8MX7kanNSOJ-6FDGxYY60m2cw9fOtEkpuKLXjMaFnePB_pYrpTPW_SmaBneULVyHHSWYvdnzWLDtvwdy9jCtMr-TZvv-GpQ5_ClxCdprfti57ZNl8Phs7iDlzbWFSP19xQPS-XSLRHbjHPrZhgcejTo2oAwg_FKDDE6ZAP526WQsU0Q2BvtnEuYyrbJDHslvBfEI4JeDRAoP9jVwYEJHsl6VgzoEMEu9qYRnR3eu4ZKzhEt3qSfTEC--Hv2tOFsBq6MiBRV74wCWBu-AtDGg9bckohOeGegKYS-oTdmvy_LhMdN2u3-YAxEIMQDd0v0_UkmAnkWh6Ck9F_u6dhFfaukqv1DKhnVU_N7cNCiO0zTF2YcQjAMXY#_=_
+      responses:
+        '200':
+          description: OK
+          headers:
+            Server:
+              schema:
+                type: string
+                example: nginx/1.25.2
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Vary:
+              schema:
+                type: string
+                example: Accept-Encoding
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.4.7
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Date:
+              schema:
+                type: string
+                example: Sat, 29 Nov 2025 07:32:59 GMT
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Encoding:
+              schema:
+                type: string
+                example: gzip
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: |-
+                {
+                    "status": true,
+                    "code": "0000",
+                    "message": "Success",
+                    "data": {
+                        "user": {
+                            "email": "ahmadfaisal.ridwan@gmail.com",
+                            "name": "Ahmad Faisal Ridwan",
+                            "username": "ahmad.faisal.ridwan-oa537z",
+                            "avatar": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=26025078767079908&width=1920&ext=1766993578&hash=AT93ez4kXxvvk3vv7IS-66Bj",
+                            "id": "b0655b00-6630-422d-b7a7-cfd08d78c255"
+                        },
+                        "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vcmVzdGFwaS50ZXN0L2FwaS92MS9hdXRoL2ZhY2Vib29rIiwiaWF0IjoxNzY0NDAxNTc5LCJleHAiOjE3NjQ0MDUxNzksIm5iZiI6MTc2NDQwMTU3OSwianRpIjoiOFVzQ2JHR3NPRnRNUTlzSCIsInN1YiI6ImIwNjU1YjAwLTY2MzAtNDIyZC1iN2E3LWNmZDA4ZDc4YzI1NSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.YM7q5B--sSfeCimb2bWaAZ_GPa0Jz5gDoykepdzH5J0"
+                    }
+                }
+  /api/v1/auth/facebook/url:
+    get:
+      tags:
+        - AUTH > facebook
+      summary: facebook url
+      responses:
+        '200':
+          description: OK
+          headers:
+            Server:
+              schema:
+                type: string
+                example: nginx/1.25.2
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Vary:
+              schema:
+                type: string
+                example: Accept-Encoding
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.4.7
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Date:
+              schema:
+                type: string
+                example: Sat, 29 Nov 2025 05:11:19 GMT
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Encoding:
+              schema:
+                type: string
+                example: gzip
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: |-
+                {
+                    "status": true,
+                    "code": "0000",
+                    "message": "Success",
+                    "data": {
+                        "url": "https://www.facebook.com/v23.0/dialog/oauth?client_id=1384523103376246&redirect_uri=https%3A%2F%2F127.0.0.1%3A8000%2Fapi%2Fv1%2Foauth%2Ffacebook%2Fcallback&scope=email&response_type=code"
+                    }
+                }
+  /api/v1/auth/register:
+    post:
+      tags:
+        - AUTH
+      summary: register
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: Ahmad Faisal Ridwan
+                email: ahmadfaisal.ridwan@gmail.com
+                password: ahmadsecret123
+                password_confirmation: ahmadsecret123
+      responses:
+        '201':
+          description: Created
+          headers:
+            Server:
+              schema:
+                type: string
+                example: nginx/1.25.2
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.4.7
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Date:
+              schema:
+                type: string
+                example: Sat, 29 Nov 2025 07:34:01 GMT
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: |-
+                {
+                    "status": true,
+                    "code": "0000",
+                    "message": "registration success",
+                    "data": {
+                        "name": "Ahmad Faisal Ridwan",
+                        "username": "ahmad.faisal.ridwan-gknjlw",
+                        "email": "ahmadfaisal.ridwan@gmail.com",
+                        "id": "b5d9203b-c58c-458b-8a12-bfd119c9b3d3"
+                    }
+                }
+  /api/v1/auth/login:
+    post:
+      tags:
+        - AUTH
+      summary: login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: ahmadfaisal.ridwan@gmail.com
+                password: ahmadsecret123
+      responses:
+        '200':
+          description: OK
+          headers:
+            Server:
+              schema:
+                type: string
+                example: nginx/1.25.2
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Vary:
+              schema:
+                type: string
+                example: Accept-Encoding
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.4.7
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Date:
+              schema:
+                type: string
+                example: Sat, 29 Nov 2025 07:14:12 GMT
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Encoding:
+              schema:
+                type: string
+                example: gzip
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: |-
+                {
+                    "status": true,
+                    "code": "0000",
+                    "message": "Login success",
+                    "data": {
+                        "user": {
+                            "id": "07f6d5bd-9166-4a80-bd6b-7e5f493eef06",
+                            "name": "Ahmad Faisal Ridwan",
+                            "username": "ahmad.faisal.ridwan-af6jn1",
+                            "email": "ahmadfaisal.ridwan@gmail.com",
+                            "email_verified_at": null,
+                            "avatar": null,
+                            "role": "user"
+                        },
+                        "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vcmVzdGFwaS50ZXN0L2FwaS92MS9hdXRoL2xvZ2luIiwiaWF0IjoxNzY0NDAwNDUyLCJleHAiOjE3NjQ0MDQwNTIsIm5iZiI6MTc2NDQwMDQ1MiwianRpIjoiSWNiVUhrYlVRaTc4MzVrYyIsInN1YiI6IjA3ZjZkNWJkLTkxNjYtNGE4MC1iZDZiLTdlNWY0OTNlZWYwNiIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.0P_7rEBKCg872HbwkVyIfytOAifRBS4E3458V-L6uxs"
+                    }
+                }
+  /api/v1/auth/logout:
+    post:
+      tags:
+        - AUTH
+      summary: logout
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example: ''
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+          headers:
+            Server:
+              schema:
+                type: string
+                example: nginx/1.25.2
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Vary:
+              schema:
+                type: string
+                example: Accept-Encoding
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.4.7
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Date:
+              schema:
+                type: string
+                example: Sat, 29 Nov 2025 05:25:09 GMT
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Encoding:
+              schema:
+                type: string
+                example: gzip
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: |-
+                {
+                    "status": true,
+                    "code": "0000",
+                    "message": "Logout success",
+                    "data": []
+                }
+  /api/v1/auth/token/refresh:
+    post:
+      tags:
+        - AUTH
+      summary: refresh
+      requestBody:
+        content: {}
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+          headers:
+            Server:
+              schema:
+                type: string
+                example: nginx/1.25.2
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Vary:
+              schema:
+                type: string
+                example: Accept-Encoding
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.4.7
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Date:
+              schema:
+                type: string
+                example: Sat, 29 Nov 2025 05:25:23 GMT
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Encoding:
+              schema:
+                type: string
+                example: gzip
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: |-
+                {
+                    "status": true,
+                    "code": "0000",
+                    "message": "Token refreshed successfully",
+                    "data": {
+                        "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vcmVzdGFwaS50ZXN0L2FwaS92MS9hdXRoL3Rva2VuL3JlZnJlc2giLCJpYXQiOjE3NjQzOTM5MTcsImV4cCI6MTc2NDM5NzUyMywibmJmIjoxNzY0MzkzOTIzLCJqdGkiOiJuTjRmZHNDUTBxTFNLWlhSIiwic3ViIjoiYWVlYzZiOTktZjQ3My00MWI0LWI5YTAtZDU2YWI1YWQyMGMzIn0.mZBssWjJoeOyZiEd36wPNWc5eD0vDiJnaNvnV5ulZzg"
+                    }
+                }
+  /api/v1/users/profile:
+    get:
+      tags:
+        - USER
+      summary: profile
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+          headers:
+            Server:
+              schema:
+                type: string
+                example: nginx/1.25.2
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Vary:
+              schema:
+                type: string
+                example: Accept-Encoding
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.4.7
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Date:
+              schema:
+                type: string
+                example: Sat, 29 Nov 2025 07:35:57 GMT
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Encoding:
+              schema:
+                type: string
+                example: gzip
+          content:
+            text/plain:
+              schema:
+                type: string
+              examples:
+                example-0:
+                  summary: profile
+                  value: |-
+                    {
+                        "status": true,
+                        "code": "0000",
+                        "message": "Success",
+                        "data": {
+                            "id": "ce260a40-752a-4048-a4ad-433a1499d8bb",
+                            "name": "Administrator",
+                            "username": "administrator-68anpd",
+                            "email": "admin@example.com",
+                            "email_verified_at": "2025-11-29T07:25:22.000000Z",
+                            "avatar": null,
+                            "role": "admin"
+                        }
+                    }
+                example-1:
+                  summary: profile
+                  value: |-
+                    {
+                        "status": true,
+                        "code": "0000",
+                        "message": "Success",
+                        "data": {
+                            "id": "b5d9203b-c58c-458b-8a12-bfd119c9b3d3",
+                            "name": "Ahmad Faisal Ridwan",
+                            "username": "ahmad.faisal.ridwan-gknjlw",
+                            "email": "ahmadfaisal.ridwan@gmail.com",
+                            "email_verified_at": null,
+                            "avatar": null,
+                            "role": "user"
+                        }
+                    }
+    put:
+      tags:
+        - USER
+      summary: update profile
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: Ahmad Faisal Ridwan
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+          headers:
+            Server:
+              schema:
+                type: string
+                example: nginx/1.25.2
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Vary:
+              schema:
+                type: string
+                example: Accept-Encoding
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.4.7
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Date:
+              schema:
+                type: string
+                example: Sat, 29 Nov 2025 05:19:22 GMT
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Encoding:
+              schema:
+                type: string
+                example: gzip
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: |-
+                {
+                    "status": true,
+                    "code": "0000",
+                    "message": "Success",
+                    "data": {
+                        "id": "aeec6b99-f473-41b4-b9a0-d56ab5ad20c3",
+                        "name": "Ahmad Faisal Ridwan Update",
+                        "username": "ahmadfaisal.ridwan@gmail.com",
+                        "email": "ahmadfaisal.ridwan@gmail.com",
+                        "email_verified_at": null,
+                        "avatar": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=26025078767079908&width=1920&ext=1766985293&hash=AT-M34OZX1AZ3MA80FVEsk-4"
+                    }
+                }
+  /api/v1/admin/users:
+    get:
+      tags:
+        - ADMIN
+      summary: users
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: search
+          in: query
+          schema:
+            type: string
+        - name: row_per_page
+          in: query
+          schema:
+            type: integer
+          example: '100'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Server:
+              schema:
+                type: string
+                example: nginx/1.25.2
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Vary:
+              schema:
+                type: string
+                example: Accept-Encoding
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.4.7
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Date:
+              schema:
+                type: string
+                example: Sat, 29 Nov 2025 07:35:31 GMT
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Encoding:
+              schema:
+                type: string
+                example: gzip
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: |-
+                {
+                    "status": true,
+                    "code": "0000",
+                    "message": "success",
+                    "data": {
+                        "data": [
+                            {
+                                "id": "b5d9203b-c58c-458b-8a12-bfd119c9b3d3",
+                                "name": "Ahmad Faisal Ridwan",
+                                "email": "ahmadfaisal.ridwan@gmail.com",
+                                "role": "user"
+                            },
+                            {
+                                "id": "ce260a40-752a-4048-a4ad-433a1499d8bb",
+                                "name": "Administrator",
+                                "email": "admin@example.com",
+                                "role": "admin"
+                            }
+                        ],
+                        "meta": {
+                            "current_page": 1,
+                            "from": 1,
+                            "last_page": 1,
+                            "path": "http://restapi.test/api/v1/admin/users",
+                            "per_page": 100,
+                            "to": 2,
+                            "total": 2
+                        }
+                    }
+                }
