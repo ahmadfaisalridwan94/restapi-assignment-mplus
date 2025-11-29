@@ -1,0 +1,1287 @@
+{
+	"info": {
+		"_postman_id": "db5c1f78-1f36-4b46-b5b7-75bc71b65831",
+		"name": "RESTAPI ASSIGNMENT",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9172327"
+	},
+	"item": [
+		{
+			"name": "AUTH",
+			"item": [
+				{
+					"name": "google",
+					"item": [
+						{
+							"name": "google url",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/v1/auth/google/url",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"google",
+										"url"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "google url",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}/api/v1/auth/google/url",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"auth",
+												"google",
+												"url"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "",
+									"header": [
+										{
+											"key": "Server",
+											"value": "nginx/1.25.2"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Vary",
+											"value": "Accept-Encoding"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.4.7"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 29 Nov 2025 04:58:09 GMT"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Encoding",
+											"value": "gzip"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": true,\n    \"code\": \"0000\",\n    \"message\": \"Success\",\n    \"data\": {\n        \"auth_url\": \"https://accounts.google.com/o/oauth2/v2/auth?client_id=263435033112-c2ch6j8rb3hufn81njbltopememj5h8s.apps.googleusercontent.com&redirect_uri=http%3A%2F%2F127.0.0.1%3A8000%2Fapi%2Fv1%2Foauth%2Fgoogle%2Fcallback&response_type=code&scope=openid+email+profile&access_type=offline&prompt=consent&code_challenge=3DcVm6FWtg8Pj3qeBeQv6jnaMaU8SyBE6Z7uhRViDsc&code_challenge_method=S256\",\n        \"code_verifier\": \"mELgShaNyJNkdcw0TPTR8fpuOlRHxBJkS83UN9g86LnhmOpxiUiEYDo7L8RKUYvQ\"\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "google",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"code\": \"4/0Ab32j91U04UATlGZmI_A75EQ9pZNnICGwI4Bc5dSbM5xv4siJO2UWgr6VyjuzJFw5GKxfw\",\r\n    \"code_verifier\": \"urM5oIq0D0Q9CyNWSN3sp5GBhT7gOuTRyhRBLcKSTdPzZJtK9N61Y50zxH8dKj2G\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/v1/auth/google",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"google"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "google",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"code\": \"4/0Ab32j92E-lzTaMM3gyLZvop2rDaFXTX9B3dEylfgWqiHZ9kYBqpKKObKfEEgdIE2NKjwDA\",\r\n    \"code_verifier\": \"DxdNtNioVDS6HOuu3nJyrqzShbOzQXnYAsLhZ9qmyrYfJ6FM16yGZ0ikSoX7ehKv\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}/api/v1/auth/google",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"auth",
+												"google"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "",
+									"header": [
+										{
+											"key": "Server",
+											"value": "nginx/1.25.2"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Vary",
+											"value": "Accept-Encoding"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.4.7"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 29 Nov 2025 07:29:06 GMT"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Encoding",
+											"value": "gzip"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": true,\n    \"code\": \"0000\",\n    \"message\": \"Success\",\n    \"data\": {\n        \"user\": {\n            \"email\": \"ahmadfaisal.ridwan@gmail.com\",\n            \"username\": \"ahmad.faisal.ridwan-wkbi0x\",\n            \"name\": \"Ahmad Faisal Ridwan\",\n            \"avatar\": \"https://lh3.googleusercontent.com/a/ACg8ocKoGn53IWu1E5q3AtFG8FqJVIeFCzk-OluwAyy96i92zQf58ZResg=s96-c\",\n            \"id\": \"20faf390-78d4-43ac-8bcc-debbdcb4ff77\"\n        },\n        \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vcmVzdGFwaS50ZXN0L2FwaS92MS9hdXRoL2dvb2dsZSIsImlhdCI6MTc2NDQwMTM0NiwiZXhwIjoxNzY0NDA0OTQ2LCJuYmYiOjE3NjQ0MDEzNDYsImp0aSI6IjBQQUJ5Z3BCSnFPSm1lSUQiLCJzdWIiOiIyMGZhZjM5MC03OGQ0LTQzYWMtOGJjYy1kZWJiZGNiNGZmNzciLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.zI3V227vRas_DQIGAYP3U1VFGaCxbkXGOGFqUEfz8XI\"\n    }\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "facebook",
+					"item": [
+						{
+							"name": "facebook",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"code\": \"AQBklkrnXklvxO4uaMUycyR-M5OhtRs42xYYbgywZIJzxpeXpWGnBt-4floSanwAG2Bu123T5fHEhH8MX7kanNSOJ-6FDGxYY60m2cw9fOtEkpuKLXjMaFnePB_pYrpTPW_SmaBneULVyHHSWYvdnzWLDtvwdy9jCtMr-TZvv-GpQ5_ClxCdprfti57ZNl8Phs7iDlzbWFSP19xQPS-XSLRHbjHPrZhgcejTo2oAwg_FKDDE6ZAP526WQsU0Q2BvtnEuYyrbJDHslvBfEI4JeDRAoP9jVwYEJHsl6VgzoEMEu9qYRnR3eu4ZKzhEt3qSfTEC--Hv2tOFsBq6MiBRV74wCWBu-AtDGg9bckohOeGegKYS-oTdmvy_LhMdN2u3-YAxEIMQDd0v0_UkmAnkWh6Ck9F_u6dhFfaukqv1DKhnVU_N7cNCiO0zTF2YcQjAMXY#_=_\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/v1/auth/facebook",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"facebook"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "facebook",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"code\": \"AQBklkrnXklvxO4uaMUycyR-M5OhtRs42xYYbgywZIJzxpeXpWGnBt-4floSanwAG2Bu123T5fHEhH8MX7kanNSOJ-6FDGxYY60m2cw9fOtEkpuKLXjMaFnePB_pYrpTPW_SmaBneULVyHHSWYvdnzWLDtvwdy9jCtMr-TZvv-GpQ5_ClxCdprfti57ZNl8Phs7iDlzbWFSP19xQPS-XSLRHbjHPrZhgcejTo2oAwg_FKDDE6ZAP526WQsU0Q2BvtnEuYyrbJDHslvBfEI4JeDRAoP9jVwYEJHsl6VgzoEMEu9qYRnR3eu4ZKzhEt3qSfTEC--Hv2tOFsBq6MiBRV74wCWBu-AtDGg9bckohOeGegKYS-oTdmvy_LhMdN2u3-YAxEIMQDd0v0_UkmAnkWh6Ck9F_u6dhFfaukqv1DKhnVU_N7cNCiO0zTF2YcQjAMXY#_=_\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}/api/v1/auth/facebook",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"auth",
+												"facebook"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "",
+									"header": [
+										{
+											"key": "Server",
+											"value": "nginx/1.25.2"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Vary",
+											"value": "Accept-Encoding"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.4.7"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 29 Nov 2025 07:32:59 GMT"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Encoding",
+											"value": "gzip"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": true,\n    \"code\": \"0000\",\n    \"message\": \"Success\",\n    \"data\": {\n        \"user\": {\n            \"email\": \"ahmadfaisal.ridwan@gmail.com\",\n            \"name\": \"Ahmad Faisal Ridwan\",\n            \"username\": \"ahmad.faisal.ridwan-oa537z\",\n            \"avatar\": \"https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=26025078767079908&width=1920&ext=1766993578&hash=AT93ez4kXxvvk3vv7IS-66Bj\",\n            \"id\": \"b0655b00-6630-422d-b7a7-cfd08d78c255\"\n        },\n        \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vcmVzdGFwaS50ZXN0L2FwaS92MS9hdXRoL2ZhY2Vib29rIiwiaWF0IjoxNzY0NDAxNTc5LCJleHAiOjE3NjQ0MDUxNzksIm5iZiI6MTc2NDQwMTU3OSwianRpIjoiOFVzQ2JHR3NPRnRNUTlzSCIsInN1YiI6ImIwNjU1YjAwLTY2MzAtNDIyZC1iN2E3LWNmZDA4ZDc4YzI1NSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.YM7q5B--sSfeCimb2bWaAZ_GPa0Jz5gDoykepdzH5J0\"\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "facebook url",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/v1/auth/facebook/url",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"facebook",
+										"url"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "facebook url",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}/api/v1/auth/facebook/url",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"auth",
+												"facebook",
+												"url"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": null,
+									"header": [
+										{
+											"key": "Server",
+											"value": "nginx/1.25.2"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Vary",
+											"value": "Accept-Encoding"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.4.7"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 29 Nov 2025 05:11:19 GMT"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Encoding",
+											"value": "gzip"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": true,\n    \"code\": \"0000\",\n    \"message\": \"Success\",\n    \"data\": {\n        \"url\": \"https://www.facebook.com/v23.0/dialog/oauth?client_id=1384523103376246&redirect_uri=https%3A%2F%2F127.0.0.1%3A8000%2Fapi%2Fv1%2Foauth%2Ffacebook%2Fcallback&scope=email&response_type=code\"\n    }\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Ahmad Faisal Ridwan\",\r\n    \"email\": \"ahmadfaisal.ridwan@gmail.com\",\r\n    \"password\": \"ahmadsecret123\",\r\n    \"password_confirmation\": \"ahmadsecret123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/auth/register",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "register",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Ahmad Faisal Ridwan\",\r\n    \"email\": \"ahmadfaisal.ridwan@gmail.com\",\r\n    \"password\": \"ahmadsecret123\",\r\n    \"password_confirmation\": \"ahmadsecret123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/v1/auth/register",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.25.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.7"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 29 Nov 2025 07:34:01 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"code\": \"0000\",\n    \"message\": \"registration success\",\n    \"data\": {\n        \"name\": \"Ahmad Faisal Ridwan\",\n        \"username\": \"ahmad.faisal.ridwan-gknjlw\",\n        \"email\": \"ahmadfaisal.ridwan@gmail.com\",\n        \"id\": \"b5d9203b-c58c-458b-8a12-bfd119c9b3d3\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Token is stored in environment\", function () {\r",
+									"    pm.expect(pm.response.json().data.token).to.not.be.undefined;\r",
+									"    pm.environment.set(\"token\", pm.response.json().data.token);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"ahmadfaisal.ridwan@gmail.com\",\r\n    \"password\": \"ahmadsecret123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/auth/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"ahmadfaisal.ridwan@gmail.com\",\r\n    \"password\": \"ahmadsecret123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/v1/auth/login",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.25.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.7"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 29 Nov 2025 07:14:12 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"code\": \"0000\",\n    \"message\": \"Login success\",\n    \"data\": {\n        \"user\": {\n            \"id\": \"07f6d5bd-9166-4a80-bd6b-7e5f493eef06\",\n            \"name\": \"Ahmad Faisal Ridwan\",\n            \"username\": \"ahmad.faisal.ridwan-af6jn1\",\n            \"email\": \"ahmadfaisal.ridwan@gmail.com\",\n            \"email_verified_at\": null,\n            \"avatar\": null,\n            \"role\": \"user\"\n        },\n        \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vcmVzdGFwaS50ZXN0L2FwaS92MS9hdXRoL2xvZ2luIiwiaWF0IjoxNzY0NDAwNDUyLCJleHAiOjE3NjQ0MDQwNTIsIm5iZiI6MTc2NDQwMDQ1MiwianRpIjoiSWNiVUhrYlVRaTc4MzVrYyIsInN1YiI6IjA3ZjZkNWJkLTkxNjYtNGE4MC1iZDZiLTdlNWY0OTNlZWYwNiIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.0P_7rEBKCg872HbwkVyIfytOAifRBS4E3458V-L6uxs\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/auth/logout",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "logout",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/v1/auth/logout",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.25.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.7"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 29 Nov 2025 05:25:09 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"code\": \"0000\",\n    \"message\": \"Logout success\",\n    \"data\": []\n}"
+						}
+					]
+				},
+				{
+					"name": "refresh",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Token is stored in environment\", function () {\r",
+									"    pm.expect(pm.response.json().data.token).to.not.be.undefined;\r",
+									"    pm.environment.set(\"token\", pm.response.json().data.token);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/auth/token/refresh",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"token",
+								"refresh"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "refresh",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/v1/auth/token/refresh",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"token",
+										"refresh"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.25.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.7"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 29 Nov 2025 05:25:23 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"code\": \"0000\",\n    \"message\": \"Token refreshed successfully\",\n    \"data\": {\n        \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vcmVzdGFwaS50ZXN0L2FwaS92MS9hdXRoL3Rva2VuL3JlZnJlc2giLCJpYXQiOjE3NjQzOTM5MTcsImV4cCI6MTc2NDM5NzUyMywibmJmIjoxNzY0MzkzOTIzLCJqdGkiOiJuTjRmZHNDUTBxTFNLWlhSIiwic3ViIjoiYWVlYzZiOTktZjQ3My00MWI0LWI5YTAtZDU2YWI1YWQyMGMzIn0.mZBssWjJoeOyZiEd36wPNWc5eD0vDiJnaNvnV5ulZzg\"\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "USER",
+			"item": [
+				{
+					"name": "profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/users/profile",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"profile"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "profile",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/v1/users/profile",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"profile"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.25.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.7"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 29 Nov 2025 07:35:57 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"code\": \"0000\",\n    \"message\": \"Success\",\n    \"data\": {\n        \"id\": \"ce260a40-752a-4048-a4ad-433a1499d8bb\",\n        \"name\": \"Administrator\",\n        \"username\": \"administrator-68anpd\",\n        \"email\": \"admin@example.com\",\n        \"email_verified_at\": \"2025-11-29T07:25:22.000000Z\",\n        \"avatar\": null,\n        \"role\": \"admin\"\n    }\n}"
+						},
+						{
+							"name": "profile",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/v1/users/profile",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"profile"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.25.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.7"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 29 Nov 2025 07:36:41 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"code\": \"0000\",\n    \"message\": \"Success\",\n    \"data\": {\n        \"id\": \"b5d9203b-c58c-458b-8a12-bfd119c9b3d3\",\n        \"name\": \"Ahmad Faisal Ridwan\",\n        \"username\": \"ahmad.faisal.ridwan-gknjlw\",\n        \"email\": \"ahmadfaisal.ridwan@gmail.com\",\n        \"email_verified_at\": null,\n        \"avatar\": null,\n        \"role\": \"user\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "update profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Ahmad Faisal Ridwan\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/users/profile",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"profile"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "update profile",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Ahmad Faisal Ridwan Update\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/v1/users/profile",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"profile"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.25.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.7"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 29 Nov 2025 05:19:22 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"code\": \"0000\",\n    \"message\": \"Success\",\n    \"data\": {\n        \"id\": \"aeec6b99-f473-41b4-b9a0-d56ab5ad20c3\",\n        \"name\": \"Ahmad Faisal Ridwan Update\",\n        \"username\": \"ahmadfaisal.ridwan@gmail.com\",\n        \"email\": \"ahmadfaisal.ridwan@gmail.com\",\n        \"email_verified_at\": null,\n        \"avatar\": \"https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=26025078767079908&width=1920&ext=1766985293&hash=AT-M34OZX1AZ3MA80FVEsk-4\"\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "ADMIN",
+			"item": [
+				{
+					"name": "users",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/admin/users?search=&row_per_page=100",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"users"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": ""
+								},
+								{
+									"key": "row_per_page",
+									"value": "100"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "users",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/v1/admin/users?search=&row_per_page=100",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"admin",
+										"users"
+									],
+									"query": [
+										{
+											"key": "search",
+											"value": ""
+										},
+										{
+											"key": "row_per_page",
+											"value": "100"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.25.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.7"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 29 Nov 2025 07:35:31 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"code\": \"0000\",\n    \"message\": \"success\",\n    \"data\": {\n        \"data\": [\n            {\n                \"id\": \"b5d9203b-c58c-458b-8a12-bfd119c9b3d3\",\n                \"name\": \"Ahmad Faisal Ridwan\",\n                \"email\": \"ahmadfaisal.ridwan@gmail.com\",\n                \"role\": \"user\"\n            },\n            {\n                \"id\": \"ce260a40-752a-4048-a4ad-433a1499d8bb\",\n                \"name\": \"Administrator\",\n                \"email\": \"admin@example.com\",\n                \"role\": \"admin\"\n            }\n        ],\n        \"meta\": {\n            \"current_page\": 1,\n            \"from\": 1,\n            \"last_page\": 1,\n            \"path\": \"http://restapi.test/api/v1/admin/users\",\n            \"per_page\": 100,\n            \"to\": 2,\n            \"total\": 2\n        }\n    }\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}
