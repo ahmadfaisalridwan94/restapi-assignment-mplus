@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Helpers\ResponseHelper;
+use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Validator;
 
 //models
@@ -15,25 +16,15 @@ use Laravel\Socialite\Socialite;
 
 class AuthController extends Controller
 {
-    public function login(Request $request)
+    public function login(LoginRequest $request)
     {
-        //set validation
-        $validator = Validator::make($request->all(), [
-            'email'     => 'required',
-            'password'  => 'required'
-        ]);
-
-        //if validation fails
-        if ($validator->fails()) {
-            return ResponseHelper::jsonResponse(false, '0001', 'validation error', $validator->errors(), 422);
-        }
 
         //get credentials from request
         $credentials = $request->only('email', 'password');
 
         //if auth failed
         if (!$token = JWTAuth::attempt($credentials)) {
-            return ResponseHelper::jsonResponse(false, '0002', 'Unauthorized', $validator->errors(), 401);
+            return ResponseHelper::jsonResponse(false, '0002', 'Unauthorized', [], 401);
         }
 
         //if auth success
@@ -116,9 +107,47 @@ class AuthController extends Controller
         ], 200);
     }
 
-    public function facebook(Request $request)
+    public function facebook()
     {
-        return "facebook auth";
+        $url = Socialite::driver('facebook')
+            ->stateless()
+            ->redirect()
+            ->getTargetUrl();
+
+        return ResponseHelper::jsonResponse(true, '0000', 'Success', [
+            'url' => $url
+        ], 200);
+    }
+
+    public function facebook_callback()
+    {
+        try {
+            $facebookUser = Socialite::driver('facebook')->stateless()->user();
+        } catch (\Exception $e) {
+            return ResponseHelper::jsonResponse(false, '0003', 'Facebook auth failed', [], 401);
+        }
+
+        $user = User::updateOrCreate(
+            ['email' => $facebookUser->email],
+            [
+                'name' => $facebookUser->name,
+            ]
+        );
+
+        $user->loginProvider()->updateOrCreate(
+            ['provider_id' => $facebookUser->id],
+            [
+                'provider_name' => 'facebook',
+                'email' => $facebookUser->email,
+                'avatar' => $facebookUser->avatar,
+                'nick_name' => $facebookUser->name
+            ]
+        );
+
+        return ResponseHelper::jsonResponse(true, '0000', 'Success', [
+            'user' => $user,
+            'token' => JWTAuth::fromUser($user)
+        ], 200);
     }
 
     public function logout()

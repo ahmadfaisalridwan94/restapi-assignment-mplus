@@ -17,6 +17,8 @@ Route::group(['prefix' => 'v1'], function () {
     Route::get('/oauth/google/callback', [AuthController::class, 'google_callback']);
 
     Route::post('/auth/facebook', [AuthController::class, 'facebook']);
+    Route::get('/oauth/facebook/callback', [AuthController::class, 'facebook_callback']);
+
     Route::post('/auth/login', [AuthController::class, 'login']);
     Route::post('/auth/register', [AuthController::class, 'register']);
     Route::post('/auth/token/refresh', [AuthController::class, 'refresh']);
