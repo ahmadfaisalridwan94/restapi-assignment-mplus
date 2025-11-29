@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 
+//ADMIN
+use App\Http\Controllers\Admin\UserController as AdminUserController;
+
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
@@ -31,8 +34,6 @@ Route::group(['prefix' => 'v1', 'middleware' => 'jwt.auth'], function () {
 
     // group admin
     Route::group(['prefix' => 'admin', 'middleware' => 'role:admin'], function () {
-        Route::get('/users', function (Request $request) {
-            return "get users";
-        });
+        Route::get('/users', [AdminUserController::class, 'getAllPaginated']);
     });
 });

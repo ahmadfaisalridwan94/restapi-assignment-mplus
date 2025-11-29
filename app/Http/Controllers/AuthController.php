@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Helpers\ResponseHelper;
+use App\Helpers\StringHelper;
 use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Validator;
 
@@ -52,7 +53,7 @@ class AuthController extends Controller
         //create user
         $user = User::create([
             'name'      => $request->name,
-            'username'     => $request->email,
+            'username'     => StringHelper::generateUniqueUsername($request->name),
             'email'     => $request->email,
             'password'  => bcrypt($request->password)
         ]);
