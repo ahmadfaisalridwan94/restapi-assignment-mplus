@@ -14,12 +14,14 @@ Route::get('/user', function (Request $request) {
 
 Route::group(['prefix' => 'v1'], function () {
     Route::post('/auth/google', [AuthController::class, 'google']);
+    Route::get('/auth/google/url', [AuthController::class, 'generateGoogleAuthUrl']);
     Route::get('/oauth/google/callback', [AuthController::class, 'google_callback']);
 
     Route::post('/auth/facebook', [AuthController::class, 'facebook']);
     Route::get('/oauth/facebook/callback', [AuthController::class, 'facebook_callback']);
 
     Route::post('/auth/login', [AuthController::class, 'login']);
+    Route::post('/auth/check', [AuthController::class, 'check']);
     Route::post('/auth/register', [AuthController::class, 'register']);
     Route::post('/auth/token/refresh', [AuthController::class, 'refresh']);
 });
