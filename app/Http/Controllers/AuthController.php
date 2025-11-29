@@ -218,17 +218,4 @@ class AuthController extends Controller
             return ResponseHelper::jsonResponse(false, '0003', 'Unable to refresh token', [], 500);
         }
     }
-
-    public function check()
-    {
-        // get header
-        $token = request()->header('X-TOKEN');
-
-        $user = User::where('social_auth_request_token', $token)->update(['social_auth_request_token' => null]);
-
-        // check if login
-        if ($user = JWTAuth::parseToken()->authenticate()) {
-            return ResponseHelper::jsonResponse(true, '0000', 'Success', ['user' => $user], 200);
-        }
-    }
 }

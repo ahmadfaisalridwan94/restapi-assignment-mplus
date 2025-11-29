@@ -20,7 +20,6 @@ Route::group(['prefix' => 'v1'], function () {
     Route::get('/auth/facebook/url', [AuthController::class, 'generateFacebookAuthUrl']);
 
     Route::post('/auth/login', [AuthController::class, 'login']);
-    Route::post('/auth/check', [AuthController::class, 'check']);
     Route::post('/auth/register', [AuthController::class, 'register']);
     Route::post('/auth/token/refresh', [AuthController::class, 'refresh']);
 });
