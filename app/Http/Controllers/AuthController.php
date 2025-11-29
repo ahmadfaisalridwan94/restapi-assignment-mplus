@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Helpers\ResponseHelper;
 use App\Helpers\StringHelper;
+use App\Http\Requests\GoogleLoginRequest;
 use App\Http\Requests\LoginRequest;
+use App\Http\Requests\RegisterRequest;
 use Illuminate\Support\Facades\Validator;
 
 //models
@@ -36,20 +38,8 @@ class AuthController extends Controller
         ], 200);
     }
 
-    public function register(Request $request)
+    public function register(RegisterRequest $request)
     {
-        //set validation
-        $validator = Validator::make($request->all(), [
-            'name'      => 'required',
-            'email'     => 'required|email|unique:users',
-            'password'  => 'required|min:8|confirmed'
-        ]);
-
-        //if validation fails
-        if ($validator->fails()) {
-            return ResponseHelper::jsonResponse(false, '0001', 'validation error', $validator->errors(), 422);
-        }
-
         //create user
         $user = User::create([
             'name'      => $request->name,
@@ -103,12 +93,8 @@ class AuthController extends Controller
         ], 200);
     }
 
-    public function google(Request $request)
+    public function google(GoogleLoginRequest $request)
     {
-        $request->validate([
-            'code' => 'required|string',
-            'code_verifier' => 'required|string',
-        ]);
 
         $response = Http::asForm()->post('https://oauth2.googleapis.com/token', [
             'code' => $request->code,
@@ -148,10 +134,19 @@ class AuthController extends Controller
             ], 400);
         }
 
+        $user = User::where('email', $googleUser['email'])->first();
+        if ($user) {
+            return ResponseHelper::jsonResponse(true, '0000', 'Success', [
+                'user' => $user,
+                'token' => JWTAuth::fromUser($user)
+            ], 200);
+        }
+
         $user = User::updateOrCreate(
             ['email' => $googleUser['email']],
             [
-                'username' => $googleUser['email'],
+                'email' => $googleUser['email'],
+                'username' => StringHelper::generateUniqueUsername($googleUser['name']),
                 'name' => $googleUser['name'],
                 'avatar' => $googleUser['picture'],
             ]
@@ -184,12 +179,20 @@ class AuthController extends Controller
             return ResponseHelper::jsonResponse(false, '0003', 'Facebook auth failed', [], 401);
         }
 
+        $user = User::where('email', $facebookUser['email'])->first();
+        if ($user) {
+            return ResponseHelper::jsonResponse(true, '0000', 'Success', [
+                'user' => $user,
+                'token' => JWTAuth::fromUser($user)
+            ], 200);
+        }
+
         $user = User::updateOrCreate(
             ['email' => $facebookUser->email],
             [
                 'name' => $facebookUser->name,
-                'provider_name' => 'facebook',
-                'provider_id' => $facebookUser->id,
+                'username' => StringHelper::generateUniqueUsername($facebookUser['name']),
+                'email' => $facebookUser->email,
                 'avatar' => $facebookUser->avatar
             ]
         );
