@@ -97,10 +97,8 @@ class AuthController extends Controller
             'code_verifier' => 'required|string',
         ]);
 
-        $code = $request->code;
-
         $response = Http::asForm()->post('https://oauth2.googleapis.com/token', [
-            'code' => $code,
+            'code' => $request->code,
             'client_id' => config('services.google.client_id'),
             'client_secret' => config('services.google.client_secret'),
             'redirect_uri' => config('services.google.redirect'),
@@ -143,36 +141,6 @@ class AuthController extends Controller
                 'username' => $googleUser['email'],
                 'name' => $googleUser['name'],
                 'avatar' => $googleUser['picture'],
-            ]
-        );
-
-        return ResponseHelper::jsonResponse(true, '0000', 'Success', [
-            'user' => $user,
-            'token' => JWTAuth::fromUser($user)
-        ], 200);
-    }
-
-    public function google_callback()
-    {
-
-        // print all request
-        dd(request()->all());
-
-        try {
-            $googleUser = Socialite::driver('google')->stateless()->user();
-        } catch (\Exception $e) {
-            return ResponseHelper::jsonResponse(false, '0003', 'Google auth failed', [], 401);
-        }
-
-        $user = User::updateOrCreate(
-            ['email' => $googleUser->email],
-            [
-                'username' => $googleUser->email,
-                'name' => $googleUser->name,
-                'avatar' => $googleUser->avatar,
-                'provider_name' => 'google',
-                'provider_id' => $googleUser->id,
-                'provider_token' => $googleUser->token
             ]
         );
 
