@@ -1,8 +1,9 @@
 services:
   app:
     build:
-      context: ./docker/php
-    container_name: laravel-app
+      context: .
+      dockerfile: docker/development/php/Dockerfile
+    container_name: laravel-app-dev
     volumes:
       - ./src:/var/www/html
     env_file:
@@ -14,8 +15,9 @@ services:
 
   nginx:
     build:
-      context: ./docker/nginx
-    container_name: laravel-nginx
+      context: .
+      dockerfile: docker/development/nginx/Dockerfile
+    container_name: laravel-nginx-dev
     ports:
       - "8080:80"
     volumes:
@@ -25,7 +27,7 @@ services:
 
   mysql:
     image: mysql:8.0
-    container_name: laravel-mysql
+    container_name: laravel-mysql-dev
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: restapi_assignment

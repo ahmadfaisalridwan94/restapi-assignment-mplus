@@ -1,0 +1,36 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: docker/production/php/Dockerfile
+    container_name: laravel-app-prod
+    env_file:
+      - ./src/.env
+    depends_on:
+      - mysql
+    expose:
+      - "9000"
+
+  nginx:
+    build:
+      context: .
+      dockerfile: docker/production/nginx/Dockerfile
+    container_name: laravel-nginx-prod
+    ports:
+      - "8080:80"
+    depends_on:
+      - app
+
+  mysql:
+    image: mysql:8.0
+    container_name: laravel-mysql-prod
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: restapi_assignment
+    volumes:
+      - dbdata:/var/lib/mysql
+    ports:
+      - "3307:3306"
+
+volumes:
+  dbdata:
